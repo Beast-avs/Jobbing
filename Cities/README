@@ -1,3 +1,7 @@
+Print a small summary of the city
+
+This program written on PERL
+
 This is a solution according to task:
 
 Searching for answers on the internet is perfectly acceptable, but key references should be recorded.
@@ -25,20 +29,20 @@ where <FORMAT> is an output format. Supported:
   - cli_c - data represented in single line with comma as delimiter
   - multiline - Data represented line by line
   - xml - XML data format
-  
+
 The program divided into 2 parts:
  - myParser - get the requested city and store the info into hash.
  - myDisplay - this module represents data. Other words, here the data is preperes for output.
- 
- Actually there is need two more (at least) modules: 
+
+ Actually there is need two more (at least) modules:
   - Configuartor - reads the config data from file (config parameters sush as path to file with cities, path to log, etc).
   - Logger - module which stores the events during programm working.
-  
+
   I have no idea how to know the property 'capital' of the city without introducing yet another file with this properties, as an ilustration:
   ./conf/capitals.txt
   USA - Washington
   Ukraine - Kyiv
   Russia - Moscow
   ...
-  
-  Now I'm reading about difference Object Accessor and a Class Accessor.  
+
+  Now I'm reading about difference Object Accessor and a Class Accessor.
