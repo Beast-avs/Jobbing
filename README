@@ -1,0 +1,14 @@
+Jobbing
+=======
+
+These scripts may seem too simple or the solution may be quite awkward or the script provides the only idea.
+
+Each idea represented in separate folder ("project") with full description (or almost full), golas (or steps) which should be done reaching the finish, propositions and solutions. In some case the UML model may be provided too.
+
+The set of languages is limited by (at the moment):
+
+bash;
+PERL;
+Python;
+Java;
+This description will be updated.
