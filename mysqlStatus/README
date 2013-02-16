@@ -1,1 +1,4 @@
-test
+This is a simple script for getting INNODB status from remote MySQL server
+
+This script written on Java
+
