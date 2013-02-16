@@ -1,0 +1,44 @@
+This is a solution according to task:
+
+Searching for answers on the internet is perfectly acceptable, but key references should be recorded.
+These exercises are to demonstrate knowledge of OO techniques, so please use them wherever possible.
+1) Take as source the Cities provided at the end of the mail and write a script city_info.pl that when
+passed the city name via
+city_info.pl --city <city name> [--filename <optional filename holding the city info>]
+will print out a small summary of the details of the city.
+Please write this entirely using OO techniques.
+Please write this in as few statements as possible.
+There is no limitation on the Perl Modules you can use.
+2) Take the city example above and provide summary information for all cities
+Please load, construct and display all city object from a data file in as few lines as possible.
+Plus the file must be loaded into a string in one operation. (To test knowledge of an idiom).
+3) The data set for the cities including ID, City, Country, and Population, however when a
+city is a capital city, it should output additionally the population of the country.
+Discuss how you would modify the script to achieve this using standard OO techniques.
+4) What is the difference between an Object Accessor and a Class Accessor.
+Data for Test.
+
+You may run this progarmm:
+./city_info.pl --city=<CITY> [--filename=<CITIES_FILE>] [--format=<FORMAT>]
+where <FORMAT> is an output format. Supported:
+  - cli_s - data represented in single line with space as delimiter
+  - cli_c - data represented in single line with comma as delimiter
+  - multiline - Data represented line by line
+  - xml - XML data format
+  
+The program divided into 2 parts:
+ - myParser - get the requested city and store the info into hash.
+ - myDisplay - this module represents data. Other words, here the data is preperes for output.
+ 
+ Actually there is need two more (at least) modules: 
+  - Configuartor - reads the config data from file (config parameters sush as path to file with cities, path to log, etc).
+  - Logger - module which stores the events during programm working.
+  
+  I have no idea how to know the property 'capital' of the city without introducing yet another file with this properties, as an ilustration:
+  ./conf/capitals.txt
+  USA - Washington
+  Ukraine - Kyiv
+  Russia - Moscow
+  ...
+  
+  Now I'm reading about difference Object Accessor and a Class Accessor.  
