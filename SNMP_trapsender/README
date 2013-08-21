@@ -1,0 +1,25 @@
+     This script sends SNMP messages generated as trap to NMS host.
+     This script has a configuration file which contains all necessary
+values, such as:
+      - A list of SNMP_service instances (hosts);
+      - A list of metrics (counters) for all SNMP_service instances;
+      - A list of SNMP configuration parameters (community, version);
+      - IP adress of the host which receives SNMP traps (NMS);
+      - Pathes to log and lock files.
+
+     The script has a mechanism which not allows to run more than one its
+instance simultaneously.
+
+     Log file contains the results of key calls and steps during the work.
+
+     The path to configuration file is hardcoded.
+
+     TODO:
+       1. Implement reading configuration file from command line.
+       2. Implement current configuration without running the script.
+       3. Implement getting trap message from 'snmp_alets.out' file.
+	   4. Add description of enterprice SNMP tree.
+
+This script can be used in cron:
+     0,5,10,15,20,25,30,35,40,45,50,55 * * * * . $HOME/.profile && <PATH_TO_SNMP_trapsender>/SNMP_trapsender.pl
+
