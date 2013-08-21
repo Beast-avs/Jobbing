@@ -140,7 +140,7 @@ sub ConfigurationRead($){
 				($NMS_host) = $conf_line =~ /"([^"]*)"/;
 			}elsif($conf_line =~ /^SNMP\s*=\s*{/){
 				$snmp_flag = 1;
-			}elsif($conf_line =~ /^NGCP\s*=\s*\{/){
+			}elsif($conf_line =~ /^SNMP_service\s*=\s*\{/){
 				$Snmp_service_flag = 1;
 			}elsif($conf_line =~ /^Metrics\s*=\s*\{/){
 				$metrics_flag = 1;
@@ -219,7 +219,7 @@ sub CheckSnmpserviceInstanceAvailability ($) {
 	}
 }
 
-sub CheckNGCPMetric ($$) {
+sub CheckSnmpServiceMetric ($$) {
 	my %Snmp_service_instance = %{shift @_};
 	my %Snmp_service_metric = %{shift @_};
 	my $result = 0;
@@ -229,7 +229,7 @@ sub CheckNGCPMetric ($$) {
 	$result = (split(/=/,`$METRICS_EXTRACTOR $Snmp_service_instance{'host'} -s $Snmp_service_metric{'name'}`))[1];
 
 	if (!$result or "" eq $result ){
-		SendSNMPTRAP("NGCP instance $Snmp_service_instance{'name'} ($Snmp_service_instance{'host'}) is unavailable.");
+		SendSNMPTRAP("Snmp service instance $Snmp_service_instance{'name'} ($Snmp_service_instance{'host'}) is unavailable.");
 	} else {
 		$result =~ s/^\s*//;
 		$result =~ s/\s*$//;
@@ -277,7 +277,7 @@ sub SendSNMPTRAP ($) {
 &CheckConfiguration();
 
 foreach my $Snmp_service_key (keys %Snmp_service){
-	&CheckNGCPInstanceAvailability({name=>$Snmp_service_key,host=>$Snmp_service{$Snmp_service_key}});
+	&CheckSnmpserviceInstanceAvailability({name=>$Snmp_service_key,host=>$Snmp_service{$Snmp_service_key}});
 	foreach my $metrics_key (keys %Metrics){
 		&CheckSnmpServiceMetric({name=>$Snmp_service_key,host=>$Snmp_service{$Snmp_service_key}},{name=>$metrics_key,value=>$Metrics{$metrics_key}});
 	}
