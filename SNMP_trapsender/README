@@ -1,14 +1,19 @@
-     This script sends SNMP messages generated as trap to NMS host.
+     This script sends SNMP messages generated as trap or clear to NMS host.
      This script has a configuration file which contains all necessary
 values, such as:
       - A list of SNMP_service instances (hosts);
       - A list of metrics (counters) for all SNMP_service instances;
       - A list of SNMP configuration parameters (community, version);
-      - IP adress of the host which receives SNMP traps (NMS);
-      - Pathes to log and lock files.
+      - IP address of the host which receives SNMP traps (NMS);
+      - Paths to log, lock, and history files.
 
      The script has a mechanism which not allows to run more than one its
 instance simultaneously.
+
+     For sending the clear messages (signal that problem has been solved) 
+the history file is used. It keeps the pairs Service_name-Metric_name. As
+soon as problem is found this pair adds to history file. When problem has
+solved this pair is removed from history.
 
      Log file contains the results of key calls and steps during the work.
 
