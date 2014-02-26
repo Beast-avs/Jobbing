@@ -1,0 +1,46 @@
+Checking Time Expiration Service of domain name and SSL certificate.
+
+Version 1.2 beta
+
+Description:
+For hosting is often to know when the domain name or SSL certificate needs to be updated (extended). 
+A few registrators are provide this type of service. Moreover, the notification has been came from 
+them, sometimes, too late (in one-two days before expire).
+
+There is need to know when the domain/certificate should to be extended. The notification should come
+before expiration date. The threshold should be configured.
+
+
+Requirements:
+    - reliable storage (database);
+    - customizable notification settings;
+    - automatically altering data from registrator;
+    - automation of getting data about domain registration and SSL certificates (scripts run via cron).
+    - customizable threshold;
+	
+What is done:
+    - Module which acts as parser of info has takes from whois. Implemented for following registrators:
+		- whois.publicinterestregistry.net;
+		- whois.tucows.com;
+		- whois.markmonitor.com;
+		- whois.networksolutions.com;
+		- whois.safenames.net;
+		- whois.PublicDomainRegistry.com;
+		- whois.webmasters.com;
+		- whois.godaddy.com;
+		- whois.moniker.com;
+		- whois.fabulous.com;
+		- and others (see. ./lib/Com/Keysurvey/Whois.pm).
+     - Logging the events;
+     - One point of configuration (main.conf);
+     - Program runs from cron by schedule;
+     - All data are stored in DB. For checking the data is taken from DB. If DB contains the old data or empty then data will take from whois;
+     - The notification threshold (for domain name and SSL certificate) takes from config file;
+     - Notification message contains only the info about records will going to be end soon.
+
+TODO:
+     - Each module contains own TODO section in the beginning (see for details);
+     - The checking engine will be updated. Namely, check data according to DB records, if data from there is too old then update it from whois.
+     - Rewrite the script as the daemon.
+     - If the amount of domains/certificates to check is too high (more than 50) separate the checking by pieces (lets say in 35-40 records). 
+       This is need because the service whois limits connection from the same IP per day (max 50 requests from the same IP per day).   

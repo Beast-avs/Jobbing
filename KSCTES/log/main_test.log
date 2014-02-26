@@ -1,0 +1,138 @@
+2009 Apr 28 15:17:40		-----------------
+2009 Apr 28 15:17:40		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:17:40		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:17:40		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:17:41	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:17:41		Done. Total parsed domains 0 in 1 second(s).
+2009 Apr 28 15:18:12		-----------------
+2009 Apr 28 15:18:12		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:18:12		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:18:12		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:18:12	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:18:12		Done. Total parsed domains 0 in 0 second(s).
+2009 Apr 28 15:19:55		-----------------
+2009 Apr 28 15:19:55		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:19:55		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:19:55		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:19:56	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:19:56		Done. Total parsed domains 0 in 1 second(s).
+2009 Apr 28 15:20:15		-----------------
+2009 Apr 28 15:20:15		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:20:15		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:20:15		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:20:15	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:20:15		Done. Total parsed domains 0 in 0 second(s).
+2009 Apr 28 15:22:10		-----------------
+2009 Apr 28 15:22:10		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:22:10		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:22:10		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:22:10	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:22:10		Done. Total parsed domains 0 in 0 second(s).
+2009 Apr 28 15:23:36		-----------------
+2009 Apr 28 15:23:36		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:23:36		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:23:36		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:23:36	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:23:36		Done. Total parsed domains 0 in 0 second(s).
+2009 Apr 28 15:24:07		-----------------
+2009 Apr 28 15:24:07		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:24:07		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:24:07		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:24:07	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:24:07		Done. Total parsed domains 0 in 0 second(s).
+2009 Apr 28 15:27:45		-----------------
+2009 Apr 28 15:27:45		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:27:45		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:27:45		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:27:46	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:27:46		Done. Total parsed domains 0 in 1 second(s).
+2009 Apr 28 15:28:14		-----------------
+2009 Apr 28 15:28:14		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:28:14		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:28:14		Now start to create following tables in database check_domain_test_db.
+2009 Apr 28 15:28:14	INFO	Result:
+	Table `domains` created
+	Table `registrant_contacts` created
+	Table `administrative_contacts` created
+	Table `technical_contacts` created
+	Table `name_servers` created
+2009 Apr 28 15:28:14		Done. Total parsed domains 0 in 0 second(s).
+2009 Apr 28 15:29:01		-----------------
+2009 Apr 28 15:29:01		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:29:01		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:29:01	INFO	Add domain bostonconsortiumsurvey.com with status OK
+2009 Apr 28 15:29:01	INFO	Add domain c01.keysurvey.com with status OK
+2009 Apr 28 15:29:01	INFO	Add domain worldapp.com.ua with status OK
+2009 Apr 28 15:29:01	INFO	Add domain worldapp.com.ar with status OK
+2009 Apr 28 15:29:01	INFO	Add domain extremeform.co.uk with status OK
+2009 Apr 28 15:29:01		Done. Total parsed domains 5 in 0 second(s).
+2009 Apr 28 15:29:29		-----------------
+2009 Apr 28 15:29:29		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:29:29		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:29:29	INFO	Add domain c01.keysurvey.com with status OK
+2009 Apr 28 15:29:29		Done. Total parsed domains 6 in 0 second(s).
+2009 Apr 28 15:29:39		-----------------
+2009 Apr 28 15:29:39		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:29:39		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:29:46		-----------------
+2009 Apr 28 15:29:46		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:29:46		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:29:46	INFO	Remove record for c01.keysurvey.com with status OK
+2009 Apr 28 15:29:46		Done. Total parsed domains 4 in 0 second(s).
+2009 Apr 28 15:29:58		-----------------
+2009 Apr 28 15:29:58		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:29:58		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:29:58	INFO	Add domain c01.keysurvey.com with status OK
+2009 Apr 28 15:29:58		Done. Total parsed domains 5 in 0 second(s).
+2009 Apr 28 15:39:11		-----------------
+2009 Apr 28 15:39:11		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:39:11		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:39:11		Done. Total parsed domains 5 in 0 second(s).
+2009 Apr 28 15:39:56		-----------------
+2009 Apr 28 15:39:56		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:39:56		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:39:56		Done. Total parsed domains 5 in 0 second(s).
+2009 Apr 28 15:40:30		-----------------
+2009 Apr 28 15:40:30		Checking Time Expiration Service, version 1.2 beta
+2009 Apr 28 15:40:30		Using DB check_domain_test_db on host 192.168.0.194
+2009 Apr 28 15:40:30		Done. Total parsed domains 5 in 0 second(s).

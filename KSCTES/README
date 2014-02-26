@@ -1,0 +1,12 @@
+Checking Time Expiration Service of domain name and SSL certificate (KSCTES).
+
+This program written on PERL
+
+For hosting is often to know when the domain name or SSL certificate needs to be updated (extended). 
+A few registrators are provide this type of service. Moreover, the notification has been came from 
+them, sometimes, too late (in one-two days before expire).
+
+There is need to know when the domain/certificate should to be extended. The notification should come
+before expiration date. The threshold should be configured.
+
+Please, see ./man/Synopsis.txt for details.
