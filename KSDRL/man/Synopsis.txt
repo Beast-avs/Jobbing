@@ -1,0 +1,62 @@
+Dump releases and logs (KSDRL).
+
+The idea is:
+     The release archives which are stored on server (CIT) will be moved to backup server if it older than defined days in configuration file.
+     The defined amount (set in configuration file) of releases SHOULD to stay on CIT despite the age.
+     
+	For example:
+		in folder ../artifacts/App1/ there are releases: 
+			20070211110012,
+			20080101010101, 
+			20080202020002, 
+			20090211101900.
+	after the processing the amount of remailning realeases is 3 (set in configuration file), it means that the realase 20070211110012 
+	will be moved to backup server. The final content is:
+			20080101010101, 
+            20080202020002, 
+            20090211101900.
+
+Requirements:
+	1. Flexible configuration of the following parameters:
+		- Source of the artifacts;
+		- Backup server;
+		- Age of release;
+		- Amount of releases stay in folder;
+		- Set of admins who should to get notification.
+	2. Tracking the copying process (event logging). Different log modes.
+	3. Set up main parameters via configuration file.
+	4. Flexible sending messages.
+	5. Readable output in log file with the possible ways of fixing.
+	6. Ability to run the utility in test mode - outputs the status of current operation but do not move release.
+	
+Description:
+    This utility is run on daily basis (managed by cron). When the release (which age is older than defined amount of days) is found it will be moved to
+    backup server. While moving releases the amount of archives which are left on source server (CIT) will be considered. This means that a few archives 
+    SHOULD stay on CIT. 
+    
+    Utility gets the files via SSH, FTP, FILE (in case of moving locally). In case of SSH the authorization keys should be used.
+    
+    The progress bas is implemented into utility. It helps to track the coying process.
+    
+    The logger modes is standard: DEBUG, INFO, WARNING, ERROR.
+    
+    There a few critical errors:
+    	- configuration file s not set;
+    	- log file is not set;
+    	- destination is not set;
+    	- wrong format of destination.
+    	
+    After processing the set of release archives the following info will be received (in form of statistics):
+    	- name of application which releases were moved;
+    	- the list of releases which are left on CIT;
+    	- the list of moved releases;
+    	- the list of applications where releases are oldr than defined age;
+    	- errors during the work.
+    
+ TODO:
+ 	1. Review the code. Avoid performance issues (connected to usage foreach instead of while).
+ 	2. Implement a CLI parameters support.
+ 	3. Implement logrotate in Logger module. According to rules (defined in config file) create a new log file and theold one archive or rename 
+ 		(see logrotate for details). Think about using of Log4perl.
+ 	4. Provide a short info about free disk space which is left on backup server.
+ 	5. Review the format and content of statistics (send by email).

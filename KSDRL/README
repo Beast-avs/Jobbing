@@ -1,0 +1,8 @@
+Dump releases and logs (KSDRL).
+
+This program written on PERL
+
+The release archives which are stored on server (CIT) will be moved to backup server if it older than defined days in configuration file.
+The defined amount (set in configuration file) of releases SHOULD to stay on CIT despite the age.
+
+Please, see ./man/Synopsis.txt for details.
