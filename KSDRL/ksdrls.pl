@@ -1,26 +1,51 @@
 #!/usr/bin/perl -w
+
+# A shirt description of program logic:
+#     This program uses following modules:
+#          - Configuratior - responsible for reading, checking and intialisation of 
+#               main configuration. In future it helps to prepare and manage all 
+#               config parameters in one place.
+#          - Logger - provides interface ofr event logging (for now without log 
+#               rotation). Maybe in future will be spared or populated by Log4Perl.
+#          - Sender - helps to send emails to remote SMTP server. 
+#          - CopyAnyFile - responsible for manipulating (copy/delete) files located 
+#               remotely (HTTP - only copying, FTP, SSH) and localy. The engine for
+#               file manipulation based on file schema (file://, http://, etc).
+#
+#      In the end of programm work it shows follwong statustics:
+#          - A list of release wre moved;
+#          - A list of releases were left;
+#          - Spending time for moving files;
+#          - CPU load average during the work;
+#
+#      Also, programm send email to operator with the info about operation and the 
+#      result.     
+
 # DONE: 1. Add Logger.
 # DONE: 2. Add Sender.
 # DONE: 3. Add Configurator.
 # DONE: 4. Make readable output for functions.
-# DONE: 5. Implement input parameter under which will be choosing backup mechanism (releases or logs).
+# DONE: 5. Implement input parameter which indicates backup mechanism (releases or logs).
 # DONE: 6. Calculate size of folder
 # DONE: 7. Building statistics.
-# TODO: 8. Implement mechanizm of dumping logs
+# TODO: 8. Implement mechanizm of dumping logs (almost done).
 # TODO: 9. Implement mechanizm for threads (for tracking copying progress). Now 
 #			have a problem with load average. Planning to use limited numbers of
 #			threads (ex. 50) and move mechanizm of copying to separate module.
 
 ############ Work dir ########################
-use constant WORKING_DIR => "/home/beast/Projects/KS_Dump_Releases_Logs/";
+use constant WORKING_DIR => "/path_to_KSDRL/";
 ##############################################
 ############ Incluided modules ###############
 use lib WORKING_DIR."lib/";
 
+# own modules
 use Com::Keysurvey::Configurator;
 use Com::Keysurvey::Logger;
 use Com::Keysurvey::Sender;
 use Com::Keysurvey::CopyAnyFile;
+
+# standard modules
 use threads;
 use POSIX;
 
@@ -69,14 +94,14 @@ sub onError(@)
 	}
 	elsif($type eq 'Usage')
 	{
-		print("\t\t$message\n");
+		print("          $message\n");
 		print("Usage:\n");
-		print("\ \ \ \ \ ./ksdrls.pl PARAMETER [test]\n");
+		print("          ./ksdrls.pl PARAMETER [test]\n");
 		print("where PARAMETER is:\n");
-		print("\ \ \ \ \ - release - dump releases\n");
-		print("\ \ \ \ \ - log - dump logs\n");
+		print("          - release - dump releases\n");
+		print("          - log - dump logs\n");
 		print("and:\n");
-		print("\ \ \ \ \ - test - tests confiruaration and output messages whithout effects (such as copying, removing)\n");
+		print("          - test - tests confiruaration and output messages whithout effects (such as copying, removing)\n");
 		print("\n");
 		exit 1;
 	}
@@ -98,12 +123,15 @@ sub ParseReleases($)
 	
 	if($artifacts{'scheme'} eq 'ssh')
 	{
+		# This peace of code was removed
 	}
 	elsif($artifacts{'scheme'} eq 'ftp')
 	{
+		# This peace of code was removed
 	}
 	elsif($artifacts{'scheme'} eq 'http')
 	{
+		# This peace of code was removed
 	}
 	elsif($artifacts{'scheme'} eq 'file')
 	{
@@ -175,12 +203,15 @@ sub ParseLogs($)
 
 	if($logs{'scheme'} eq 'ssh')
 	{
+		# This peace of code was removed
 	}
 	elsif($logs{'scheme'} eq 'ftp')
 	{
+		# This peace of code was removed
 	}
 	elsif($logs{'scheme'} eq 'http')
 	{
+		# This peace of code was removed
 	}
 	elsif($logs{'scheme'} eq 'file')
 	{
@@ -351,6 +382,7 @@ sub Main(@)
 {
 	my(@arguments) = @_;
 	my $result = "";
+
 	# Error checking
 	if(scalar @arguments == 0)
 	{
@@ -363,8 +395,10 @@ sub Main(@)
 		&onError('Critical',$message);
 		exit 1;
 	}
+
 	$TIME_BEGIN = time();
 	$configuration = Com::Keysurvey::Configurator->new(PATH_TO_CONFIGURATION_FILE);
+
 	# Check for errors in modules
 	if($configuration->isChecked ne "CONFIG::OK")
 	{
@@ -373,9 +407,13 @@ sub Main(@)
 		&onError('Critical',$message);
 		exit 1;
 	}
+	
+	# Init Logger
 	$logger = Com::Keysurvey::Logger->new($configuration->getLoggerFile());
 	$logger->setMode($configuration->getLoggerMode);
+	# Make first record for better log reading
 	$logger->MakeRecord("","-----------------");
+
 	if("LOGGER::OK" ne $logger->isChecked())
 	{
 		# TODO: make with &onError();
@@ -383,11 +421,12 @@ sub Main(@)
 		print("Configuration say ". $configuration->isChecked() ."\n");
 		exit 1;
 	}
+	
 	my $type_of_log = "";
 	my $message_to_log = $configuration->getProgrammName() .", version ". VERSION;
 	$logger->MakeRecord($type_of_log,$message_to_log);
-	print($message_to_log ."\n");
-	# Check error in configuration
+	
+	# Init conf. parameters
 	$MAX_AGE = $configuration->getMaxAge();
 	$MAX_RELEASES = $configuration->getMaxReleases();
 	$ARTIFACTS_HOST = $configuration->getArtifactsHost();
@@ -450,6 +489,7 @@ sub Main(@)
 		{
 			$TEST_MODE = 'true';
 		}
+	
 		foreach my $argument (@arguments)
 		{
 			if($argument eq 'release')
@@ -478,6 +518,7 @@ sub Main(@)
 				print($message_to_log."\n") if "DEBUG" eq $configuration->getLoggerMode;
 				$message_to_log = "Number of applications in $ARTIFACTS_SCHEME\:\/\/$ARTIFACTS_USER\@$ARTIFACTS_HOST\:$ARTIFACTS_PATH is: ".scalar(@releases);
 				$logger->MakeRecord("INFO",$message_to_log);
+	
 				for(my $i = 0; $i < scalar(@releases); $i++)
 				{
 					my $message_to_log = "Start the calculating for $releases[$i]{'name'}.";
@@ -491,15 +532,14 @@ sub Main(@)
 					$message_to_log = "In $releases[$i]{'name'}: Total_releases = $releases[$i]{'count'}; Total_size = ".(ceil(($releases[$i]{'size'}/1024)*100)/100)." Mb|";
 					$logger->MakeRecord("DEBUG",$message_to_log);
 					print($message_to_log."\n") if "DEBUG" eq $configuration->getLoggerMode;
+					
 					if($releases[$i]{'count'} < $MAX_RELEASES)
 					{
-						#/*
-						# DEBUG
-						# 	Output following print
-						#*/
-						print("$releases[$i]{'name'} have releases less then $MAX_RELEASES.\n");
+						# Just provide statistics without moving releases to backup server
+												
 						# Fill statistic
 						my @releases_ar = split(/\|/, $releases[$i]{'releases'});
+						
 						foreach my $release_raw(@releases_ar)
 						{
 							my ($release,$size) = split(/\=/,$release_raw);
@@ -508,13 +548,11 @@ sub Main(@)
 					}
 					else
 					{
-						#/*
-						# DEBUG
-						# 	Output following print
-						#*/
+						# Move releases to backup server due to big amount of them 
+						
 						my $message_to_log = "Number of releases in $releases[$i]{'name'}\: $releases[$i]{'count'}";
 						$logger->MakeRecord("DEBUG",$message_to_log);
-						print("Number of releases in $releases[$i]{'name'}\: $releases[$i]{'count'}\n");
+						
 						#/*
 						# Calculating age
 						#*/
@@ -523,6 +561,7 @@ sub Main(@)
 						my @current_time = split(/\:/,$current_date_time[1]);
 						my @releases_ar = split(/\|/,$releases[$i]{'releases'});
 						my $is_moved = '';
+						
 						foreach my $release_raw(@releases_ar)
 						{
 							my ($release,$size) = split(/\=/,$release_raw);
@@ -532,21 +571,20 @@ sub Main(@)
 								($current_date[0] - $r_year)*365 +
 								($current_date[1] - $r_mon)*30 +
 								($current_date[2] - $r_day);
-							# Check for old releases
+							
+							# Check for releases age
 							if(($result_days > $MAX_AGE) and ($releases[$i]{'count'} > $MAX_RELEASES))
 							{
 								# Move old release to BACKUP if number releases in app folder greater then $MAX_RELEASES
-								#/*
-								# DEBUG
-								# 	Output following print
-								#*/
+
 								my $message_to_log = "Release $release of $releases[$i]{'name'}($size) is $result_days days old.";
 								$logger->MakeRecord("DEBUG",$message_to_log);
-								print("$message_to_log.\n");
 								my $release_del_raw = $release_raw;
 								# split to release name and release size
 								my ($release_del,$size) = split(/\=/,$release_del_raw);
 								$releases[$i]{'count'}--;
+								
+								# Init copying process...
 								my $copy_file = Com::Keysurvey::CopyAnyFile->new();
 								my $copy_result = $copy_file->Copy(
 									{scheme=>$ARTIFACTS_SCHEME,user=>$ARTIFACTS_USER,host=>$ARTIFACTS_HOST,path=>"$ARTIFACTS_PATH$releases[$i]{'name'}\/$release_del"},
@@ -555,6 +593,8 @@ sub Main(@)
 								my $remove_result = "";
 								my $type_of_log = "";
 								$message_to_log = "";
+								
+								# If copy is OK remove all copyed files
 								if($copy_result eq "OK")
 								{
 									$remove_result = &Remove("$ARTIFACTS_SCHEME\:\/\/$ARTIFACTS_USER\@$ARTIFACTS_HOST\:$ARTIFACTS_PATH$releases[$i]{'name'}\/$release_del") if $TEST_MODE ne 'true';
@@ -574,17 +614,20 @@ sub Main(@)
 									$is_moved = 'error';
 									$type_of_log = "ERROR";
 								}
+								
 								$message_to_log = "$release_del of $releases[$i]{'name'} has been moved to $BACKUP_PATH with result ". $copy_result ." and removing from temporary is 3 ".$remove_result;
 								$logger->MakeRecord($type_of_log,$message_to_log);
-								print("\n$message_to_log\n\n");
+								
 								# Fill statistic
 								push(@STATISTIC,{Application=>"$releases[$i]{'name'}",Total_count=>"$releases[$i]{'COUNT'}",Total_size=>"$releases[$i]{'size'}",Release_name=>"$release_del",Release_size=>"$size",Release_status=>"$is_moved"});
 							}
 							else
 							{
+								# If the age is less then preferred just provide the statistic
 								my $release_del_raw = $release_raw;
 								my ($release_del,$size) = split(/\=/,$release_del_raw);
 								$is_moved = 'false';
+								
 								# Fill statistic
 								push(@STATISTIC,{Application=>"$releases[$i]{'name'}",Total_count=>"$releases[$i]{'COUNT'}",Total_size=>"$releases[$i]{'size'}",Release_name=>"$release_del",Release_size=>"$size",Release_status=>"$is_moved"});
 							}
@@ -608,20 +651,17 @@ sub Main(@)
 					"Log moved if application have releases grater than $MAX_RELEASES\n".
 					"Calculating count of logs of each application ...";
 				$logger->MakeRecord("DEBUG",$message_to_log);
-				print($message_to_log);# if "DEBUG" eq $configuration->getLoggerMode;
+				print($message_to_log); if "DEBUG" eq $configuration->getLoggerMode;
 
 				my @releases = &ParseLogs("$LOGS_SCHEME\:\/\/$LOGS_USER\@$LOGS_HOST\:$LOGS_PATH");
-				#my @releases1 = ();
 
 				$message_to_log = " done.";
 				$logger->MakeRecord("DEBUG",$message_to_log);
 				print($message_to_log."\n") if "DEBUG" eq $configuration->getLoggerMode;
-				##$message_to_log = "Total applications in Source is: ".scalar(@releases);
-				##$logger->MakeRecord("DEBUG",$message_to_log);
-				##print($message_to_log."\n") if "DEBUG" eq $configuration->getLoggerMode;
 				$message_to_log = "Number of applications in $ARTIFACTS_SCHEME\:\/\/$ARTIFACTS_USER\@$ARTIFACTS_HOST\:$ARTIFACTS_PATH is: ".scalar(@releases);
 				$logger->MakeRecord("INFO",$message_to_log);
-				# Main cycl
+				
+				# Main cycle
 				for(my $i = 0; $i < scalar(@releases); $i++)
 				{
 					#/*
@@ -632,32 +672,31 @@ sub Main(@)
 					my @current_time = split(/\:/,$current_date_time[1]);
 					my @releases_ar = split(/\|/,$releases[$i]{'releases'});
 					my $is_moved = '';
+					
 					foreach my $release_raw(@releases_ar)
 					{
 						my ($release,$size) = split(/\=/,$release_raw);
 						my ($r_path,$r_year,$r_mon,$r_day,$r_hour,$r_min,$r_sec) = split(/^log(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2}).*\.xml$/,$release);
-						##my ($r_path,$r_year,$r_mon,$r_day,$r_hour,$r_min,$r_sec) = ("0","0","0","0","0","0","0");
-						##print("\t\t$release\n");
 						$r_path = "$releases[$i]{'path'}\/$release";
 						my $result_days = 
 							($current_date[0] - $r_year)*365 +
 							($current_date[1] - $r_mon)*30 +
 							($current_date[2] - $r_day);
-						# Check for old releases
+						
+						# Check for releases age
 						if($result_days > $MAX_LOG_AGE)
 						{
 							# Move old release to BACKUP if number releases in app folder greater then $MAX_RELEASES
-							#/*
-							# DEBUG
-							# 	Output following print
-							#*/
+
 							my $message_to_log = "Log $release of $releases[$i]{'name'}($size) is $result_days days old.";
 							$logger->MakeRecord("DEBUG",$message_to_log);
-							print("$message_to_log.\n");
 							my $release_del_raw = $release_raw;
 							# split to release name and release size
 							my ($release_del,$size) = split(/\=/,$release_del_raw);
 							$releases[$i]{'count'}--;
+							
+							# This is Mock code.
+							# Will be implemented further
 							my $gzip_result = "OK"; # TODO: Make this.
 							my $remove_result = "";
 							my $type_of_log = "";
@@ -702,6 +741,7 @@ sub Main(@)
 			}
 			elsif($argument eq 'test')
 			{
+				# Will be implemented further
 			}
 			else
 			{
@@ -710,7 +750,8 @@ sub Main(@)
 			}
 		}
 	}
-	# Creation of statistic
+	
+	# Statistic preparation and layour
 	my @STATISTICS = sort {"$a->{Application}$a->{Release_name}" cmp "$b->{Application}$b->{Release_name}" } @STATISTIC;
 	my @rows_to_send = ();
 	foreach (@STATISTICS)
@@ -736,15 +777,19 @@ sub Main(@)
 		my $string = "<TR$row_color><TD>$hash{'Application'}</TD><TD>$hash{'Total_count'}</TD><TD>".(ceil(($hash{'Total_size'}/1024)*100)/100)."</TD><TD>$hash{'Release_name'}</TD><TD>".(ceil(($hash{'Release_size'}/1024)*100)/100);#."</TD><TD>$hash{'Release_status'}</TD></TR>";
 		push(@rows_to_send,$string)
 	}
+	
 	# Send statistic
 	$sender = Com::Keysurvey::Sender->new($configuration->getOperatorMails());
 	$sender->setSMTPServer($configuration->getSenderSMTPServer);
-        # Count time of working
+    
+    # Count time of working
 	$TIME_END = time();
 	my $time_total = $TIME_END - $TIME_BEGIN;
+	
 	# Load average
 	my $load_average = `uptime`;
 	$load_average =~s/.*load average(.*)$/$1/;
+	
 	if($sender->isChecked() ne "SENDER::OK")
 	{
 		print("Can not send mail. Sender say ".$sender->getErrorDescription($sender->isChecked())."\n");
@@ -779,9 +824,7 @@ sub Main(@)
 	$sender->SendNotification($message_to_sender);
 	$message_to_log = "Compleated during $time_total second(s). Load average $load_average";
 	$logger->MakeRecord("",$message_to_log);
-	print($message_to_log ."\n");
-	# Return
-	# 	
+	 	
 	return $result;
 }
 ############# Launch #########################

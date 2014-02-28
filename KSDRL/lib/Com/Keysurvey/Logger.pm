@@ -70,24 +70,10 @@ sub OpenLogFile($)
 	{
 		# If file exist get file info without comments and empty lines
 		open(FILE, ">>$path_to_log_file");
+		
 		# write to file
-		my %mode_num = (
-			'ERROR' => '1',
-			'WARN' => '2',			
-			'INFO' => '3',
-			'DEBUG' => '4'
-		);
-		my %type_num = (
-			'' => '0',
-			'ERROR' => '1',
-			'WARN' => '2',			
-			'INFO' => '3',
-			'DEBUG' => '4'
-		);
-			if ($mode_num{$mode} >=	$type_num{$type})
-			{
-				print FILE $self->GetCurrentDate() ."\t$type\t$message"."\n";
-			}
+		print FILE $self->GetCurrentDate() ."\t$type\t$message"."\n";
+
 		close(FILE);
 	}
 	else

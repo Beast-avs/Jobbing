@@ -13,8 +13,8 @@ use strict;
 # Parameters can be following:											#
 # Module provides following public methods:								#
 #	- new - constructor													#
-#	- isChecked - return a error if occure								#
-#	- getErrorDescription - return a descriptipton of given error		#
+#	- isChecked - returns an error if occures;							#
+#	- getErrorDescription - returns a descriptipton of given error		#
 #########################################################################
 
 ########## Variables #########
@@ -59,7 +59,6 @@ sub isChecked
 	
 	if (scalar @ERRORS ne 0)
 	{
-		
 		$result = join(":", @ERRORS);
 	}
 	else
@@ -117,7 +116,6 @@ sub Copy()
 				{scheme=>$source{'scheme'},user=>$source{'user'},host=>$source{'host'},path=>"$LIST_FILES1[$i]{'parent_name'}/$LIST_FILES1[$i]{'file_name'}",file_size=>"$LIST_FILES1[$i]{'file_size'}"},
 				{scheme=>$destination{'scheme'},user=>$destination{'user'},host=>$destination{'host'},path=>$destination{'path'}}
 				);
-			print("(".($i+1)."/".scalar(@LIST_FILES).") $LIST_FILES1[$i]{'parent_name'}/$LIST_FILES1[$i]{'file_name'} [$LIST_FILES1[$i]{'file_size'}] |$copy_result|\n");
 			$result = $copy_result;
 		}
 		else
@@ -203,7 +201,6 @@ sub CopyProtoFile($)
 	
 	if($destination{'scheme'} eq 'file' or !$destination{'scheme'})
 	{
-		print("cp $source{'path'} $destination{'path'}\n");
 		$result = "CP";
 	}
 	elsif($destination{'scheme'} eq 'smb')
