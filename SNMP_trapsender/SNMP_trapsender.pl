@@ -23,9 +23,8 @@
 # The path to configuration file is hardcoded.
 #
 # TODO:
-#       1. Implement reading configuration file from command line.
-#       2. Implement current configuration without running the script.
-#       3. Implement getting trap message from 'snmp_alets.out' file.
+#       1. Implement reading configuration file from command line. (low prio)
+#       3. Implement getting trap message from external file. (low prio)
 
 use strict;
 
@@ -34,7 +33,7 @@ use File::Basename;
 use Getopt::Long qw(:config no_ignore_case bundling);
 use FileHandle;
 
-our $PROGRAMM_VERSION = "1.0";
+our $PROGRAMM_VERSION = "2.0";
 
 our $BASE_DIR = dirname($0);
 (our $PROGRAMM = basename($0)) =~ s/\.[^.]+$//;
