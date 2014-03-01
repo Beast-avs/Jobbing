@@ -1,0 +1,26 @@
+These is the tool for testing of CS-API.
+
+This project is written on Java and bash (a wrapper for Java)
+
+Each file located in ./src/ represents the usage logic of the CS-API call.
+The source code is full of comment. 
+For getting the CLI parameters the lib org.apache.common is used.
+There are configuration file locates in ./etc/configuration.properties with following items:
+	1. Connection properties to the SERVICE
+	2. Logging properties.
+
+
+The script ./test.sh is the wrapper for the JAVA VM. The script does following:
+	1. Receives the set of input parameters via CLI (Common Line Interface)
+	2. Gets the part of the SERVICE log.
+	3. Runs the JAVA-file (from ./src/) with predefined CLASSPATH.
+	4. Transmits the STDOUT and STDERR of JAVA VM into log file.
+
+As an example of the usage you may look into ./src/CsGet.java
+
+The following line will run the JAVA-class:
+	
+	./test.sh ./src/CsGet.java -a "Account_N_2781128" -b "23213122414" -c "12124" -d "23214"
+
+	This command will show the parameter which the class receives:
+		./test.sh ./src/CsGet.java -h
