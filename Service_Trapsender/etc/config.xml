@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<resources>
+	<!--  Some files for proper working -->
+		<!-- Full path to file which contains all events during the script work. -->
+		<logger_config_file>/path_to_Service_Trapsender_new/etc/logger.conf</logger_config_file>
+		
+		<!-- Full path to lock file which prevents the script from repeat run. -->
+		<lock_file>/tmp/Service_Trapsender.lock</lock_file>
+		
+		<!-- Full path tp history file which contains the record about trap has sent. -->
+		<history_file>/path_to_Service_Trapsender_new/log/Service_Trapsender_history.txt</history_file>
+		
+		<!-- Full path to JOSLEE -->
+		<joslee>/path_to_joslee/bin/joslee.sh</joslee>
+	</resources>
+	<monitoring>
+	<!-- Parameters for monitoring -->
+		<nms_host name="NMS_1" ip="10.10.100.1" port="162">
+			<snmp_version>1</snmp_version>
+			<snmp_community>public</snmp_community>
+		</nms_host>
+		<nms_host name="NMS_2" ip="10.10.100.2" port="161">
+			<snmp_version>2</snmp_version>
+			<snmp_community>specific</snmp_community>
+		</nms_host>
+	</monitoring>
+	
+	<services>
+		<!--
+			1. Name should be unique.
+			2. IP can be repeated.
+			3. Port format is '\d{4,5}' (particular port) - connection to the given port only.
+		 	4. Thresholds:
+				- 'warning' - if the amount of available connection treats as Warning situation. 
+							If this amount if less than given value the event will be sent. May be empty.
+				- 'major' - if the amount of available connection treats as Major issue. 
+							If this amount if less than given value the event will be sent. May be empty.
+				- 'critical' - if the amount of available connection treats as Critical issue.
+							If this amount if less than given value the event will be sent. May be empty.
+		-->
+		<service_instance name="SERVICE1" trap_id="1" ip="10.10.10.10" port="50101">
+			<description>What it for</description>
+			<metrics>
+				<metric name="metric_11" trap_id="1" warning="3" major="5" critical="10" />
+				<metric name="metric_12" trap_id="2" critical="10" warning="2" major="6"/>
+				<metric name="metric_13" trap_id="3" critical="3" warning="1" major="2"/>
+			</metrics>
+			<connections>
+				<!-- 1. Name should be unique. 
+					 2. IP can be repeated. 
+					 3. Port format is:
+						- '*' or '' (empty) or omit - means any port;
+						- '\d{4,5}' (particular port) - connection to the given port only;
+						- '\d{4,5} - \d{4,5}' (port range) - the range of ports from first port till last port without gaps.
+					 4. Thresholds:
+					 	- 'warning' - if the amount of available connection treats as Warning situation. 
+									If this amount if less than given value the event will be sent. May be empty.
+					 	- 'major' - if the amount of available connection treats as Major issue. 
+									If this amount if less than given value the event will be sent. May be empty.
+					 	- 'critical' - if the amount of available connection treats as Critical issue.
+									If this amount if less than given value the event will be sent. May be empty.
+					-->
+				<connection name="REMOTE_HOST_1" trap_id="1" ip="10.10.20.1" port="*" warning="5" major="2" critical="1" />
+				<connection name="REMOTE_HOST_2" trap_id="2" ip="10.10.40.1" port="*" warning="4" major="2" critical="1" />
+				<connection name="REMOTE_HOST_3" trap_id="3" ip="10.10.50.1" port="*" warning="4" major="2" critical="1" />
+				<connection name="REMOTE_HOST_4" trap_id="4" ip="10.10.0.1" port="50654-50657" major="2" critical="1" warning="3"/>
+				<connection name="REMOTE_HOST_5" trap_id="5" ip="10.10.1.1" port="9004,9006" critical="1" major="2" warning="3" />
+			</connections>
+		</service_instance>
+		<service_instance name="SERVICE2" trap_id="2" ip="10.10.10.10" port="50201">
+			<description>What it for2</description>
+			<metrics>
+				<metric name="metric_21" trap_id="1" warning="1" major="2" critical="3" />
+				<metric name="metric_22" trap_id="2" critical="5" major="4" warning="3" />
+			</metrics>
+			<connections>
+				<connection name="REMOTE_HOST_6" trap_id="1" ip="10.10.20.1" port="*" warning="6" major="2" critical="1" />
+			</connections>
+		</service_instance>
+	</services>
+</configuration>

@@ -1,0 +1,100 @@
+2013/11/18 14:24:01 INFO Configuration file is ./etc/config.xml 
+2013/11/18 14:24:01 INFO Checking the metrics for SERVICE1 
+2013/11/18 14:24:01 INFO Metric metric_11 for service 10.10.10.10:50101 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 14:24:01 INFO Metric metric_11 for service 10.10.10.10:50101 has value 0 
+2013/11/18 14:24:01 INFO Metric metric_11 has normal value 0 for service NGCP1 
+2013/11/18 14:24:01 INFO isClearTrapNeeded: SERVICE1:metric_11, 0 
+2013/11/18 14:24:01 INFO Metric metric_12 for service 10.10.10.10:50101 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 14:24:01 INFO Metric metric_12 for service 10.10.10.10:50101 has value 0 
+2013/11/18 14:24:01 INFO Metric metric_12 has normal value 0 for service NGCP1 
+2013/11/18 14:24:01 INFO isClearTrapNeeded: SERVICE1:metric_12, 0 
+2013/11/18 14:24:01 INFO Metric metric_13 for service 10.10.10.10:50101 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 14:24:01 INFO Metric metric_13 for service 10.10.10.10:50101 has value 0 
+2013/11/18 14:24:01 INFO Metric metric_13 has normal value 0 for service NGCP1 
+2013/11/18 14:24:01 INFO isClearTrapNeeded: SERVICE1:metric_13, 0 
+2013/11/18 14:24:01 INFO Checking the connections for SERVICE1 
+2013/11/18 14:24:01 INFO The amount of connections between 'localhost' and 10.10.20.1:* is 0 
+2013/11/18 14:24:01 INFO Notification received: Severity=CRIT, OID=1, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_1] 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 14:24:01 INFO The amount of connections between 'localhost' and 10.10.40.1:* is 0 
+2013/11/18 14:24:01 INFO Notification received: Severity=CRIT, OID=2, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_2] 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 14:24:01 INFO The amount of connections between 'localhost' and 10.10.50.1:* is 0 
+2013/11/18 14:24:01 INFO Notification received: Severity=CRIT, OID=3, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_3] 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 14:24:01 INFO The amount of connections between 'localhost' and 10.10.0.1:50654-50657 is 0 
+2013/11/18 14:24:01 INFO Notification received: Severity=CRIT, OID=4, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_4] 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1  
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 14:24:01 INFO The amount of connections between 'localhost' and 10.10.1.1:9004,9006 is 0 
+2013/11/18 14:24:01 INFO Notification received: Severity=CRIT, OID=5, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and LookupDB_1] 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 14:24:01 INFO Checking the metrics for SERVICE2 
+2013/11/18 14:24:01 INFO Metric metric_21 for service 10.10.10.10:50201 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 14:24:01 INFO Metric metric_21 for service 10.10.10.10:50201 has value 0 
+2013/11/18 14:24:01 INFO Metric metric_21 has normal value 0 for service SERVICE2 
+2013/11/18 14:24:01 INFO isClearTrapNeeded: SERVICE2:metric_21, 0 
+2013/11/18 14:24:01 INFO Metric metric_22 for service 10.10.10.10:50201 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 14:24:01 INFO Metric metric_22 for service 10.10.10.10:50201 has value 0 
+2013/11/18 14:24:01 INFO Metric metric_22 has normal value 0 for service SERVICE2 
+2013/11/18 14:24:01 INFO isClearTrapNeeded: SERVICE2:metric_22, 0 
+2013/11/18 14:24:01 INFO Checking the connections for SERVICE2 
+2013/11/18 14:24:01 INFO The amount of connections between 'localhost' and 10.10.20.1:* is 0 
+2013/11/18 14:24:01 INFO Notification received: Severity=CRIT, OID=1, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_6] 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 14:24:01 INFO Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 14:24:01 INFO Exit with code 0 
+2013/11/18 15:32:54 INFO Configuration file is ./etc/config.xml 
+2013/11/18 15:32:54 DEBUG Checking the metrics for SERVICE1 
+2013/11/18 15:32:54 DEBUG Metric metric_11 for service 10.10.10.10:50101 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 15:32:54 DEBUG Metric metric_11 for service 10.10.10.10:50101 has value 0 
+2013/11/18 15:32:54 INFO Metric metric_11 has normal value 0 for service SERVICE1 
+2013/11/18 15:32:54 DEBUG isClearTrapNeeded: SERVICE11:metric_11, 0 
+2013/11/18 15:32:54 DEBUG Metric metric_12 for service 10.10.10.10:50101 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 15:32:54 DEBUG Metric metric_12 for service 10.10.10.10:50101 has value 0 
+2013/11/18 15:32:54 INFO Metric metric_12 has normal value 0 for service SERVICE1 
+2013/11/18 15:32:54 DEBUG isClearTrapNeeded: NGCP1:metric_12, 0 
+2013/11/18 15:32:54 DEBUG Metric metric_13 for service 10.10.10.10:50101 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 15:32:54 DEBUG Metric metric_13 for service 10.10.10.10:50101 has value 0 
+2013/11/18 15:32:54 INFO Metric metric_13 has normal value 0 for service SERVICE1 
+2013/11/18 15:32:54 DEBUG isClearTrapNeeded: SERVICE1:metric_13, 0 
+2013/11/18 15:32:54 DEBUG Checking the connections for SERVICE1 
+2013/11/18 15:32:54 DEBUG The amount of connections between 'localhost' and 10.10.20.1:* is 0 
+2013/11/18 15:32:54 DEBUG Notification received: Severity=CRIT, OID=1, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_1] 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 15:32:54 DEBUG The amount of connections between 'localhost' and 10.10.40.1:* is 0 
+2013/11/18 15:32:54 DEBUG Notification received: Severity=CRIT, OID=2, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_2] 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 15:32:54 DEBUG The amount of connections between 'localhost' and 10.10.50.1:* is 0 
+2013/11/18 15:32:54 DEBUG Notification received: Severity=CRIT, OID=3, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_3] 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 15:32:54 DEBUG The amount of connections between 'localhost' and 10.10.0.1:50654-50657 is 0 
+2013/11/18 15:32:54 DEBUG Notification received: Severity=CRIT, OID=4, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_4] 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 15:32:54 DEBUG The amount of connections between 'localhost' and 10.10.1.1:9004,9006 is 0 
+2013/11/18 15:32:54 DEBUG Notification received: Severity=CRIT, OID=5, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_5] 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1  
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 15:32:54 DEBUG Checking the metrics for SERVICE2 
+2013/11/18 15:32:54 DEBUG Metric metric_21 for service 10.10.10.10:50201 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 15:32:54 DEBUG Metric metric_21 for service 10.10.10.10:50201 has value 0 
+2013/11/18 15:32:54 INFO Metric metric_21 has normal value 0 for service SERVICE2 
+2013/11/18 15:32:54 DEBUG isClearTrapNeeded: SERVICE2:metric_21, 0 
+2013/11/18 15:32:54 DEBUG Metric metric_22 for service 10.10.10.10:50201 has been requesting. /path_to_joslee/bin/joslee.sh 
+2013/11/18 15:32:54 DEBUG Metric metric_22 for service 10.10.10.10:50201 has value 0 
+2013/11/18 15:32:54 INFO Metric metric_22 has normal value 0 for service SERVICE2 
+2013/11/18 15:32:54 DEBUG isClearTrapNeeded: SERVICE2:metric_22, 0 
+2013/11/18 15:32:54 DEBUG Checking the connections for SERVICE2 
+2013/11/18 15:32:54 DEBUG The amount of connections between 'localhost' and 10.10.20.1:* is 0 
+2013/11/18 15:32:54 DEBUG Notification received: Severity=CRIT, OID=1, Message=[Critical threshold has been reached for connection amount (1) between 'localhost' and REMOTE_HOST_6] 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.1:162 with community=public and SNMP v1 
+2013/11/18 15:32:54 DEBUG Notification will be send to NMS 10.10.100.2:161 with community=specific and SNMP v2 
+2013/11/18 15:32:54 INFO Exit with code 0  

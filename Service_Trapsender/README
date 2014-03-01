@@ -1,0 +1,34 @@
+This tool sends SNMP messages generated as trap or clear to NMS host.
+
+This program written on PERL
+
+It has a configuration file which contains all necessary values, such as:
+      - A list of SNMP_service instances (hosts);
+      - A list of metrics (counters) for all SNMP_service instances;
+      - A list of SNMP configuration parameters (community, version);
+      - IP address of the host which receives SNMP traps (NMS);
+      - Paths to log, lock, and history files.
+Configuration file has structure of XML for better reading and manipulating.
+
+It has a mechanism which not allows to run more than one instance of it 
+simultaneously.
+
+For sending the clear messages (signal that problem has been solved) 
+the history file is used. It keeps the pairs Service_name-Metric_name. As
+soon as problem has found this pair adds to history file. When problem has
+solved this pair is removed from history.
+
+Log file contains the results of key calls and steps during the work.
+The event are stored in different log modes.
+
+The path to configuration file is hardcoded.
+
+TODO:
+       1. Implement reading configuration file from command line.
+       2. Implement current configuration without running the script.
+       3. Implement getting trap message from 'snmp_alets.out' file.
+       4. Add support of another trap sender. Convert SNMP trap to format:
+		     <severity> <alarmtype> <clearmsgid> <progname> <date> <logmsgtype> <OLSmsgid>-<eventnumber> <dpclmsgid> <message text> 
+
+This script can be used in cron:
+     0,5,10,15,20,25,30,35,40,45,50,55 * * * * . $HOME/.profile && <PATH_TO_Service_Trapsender>/Service_Trapsender.pl
