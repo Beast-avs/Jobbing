@@ -62,10 +62,8 @@ sub Parse($){
 	while(<CITIES>){
 		chomp;
 		next if $city eq "";
-		print "=|$city|\n";
 		if ($_ =~ /\.\s*$city.*,/){
 	 		($city_info{'ID'}, $city_info{'name'}, $city_info{'country'}, $city_info{'population'}) = $_=~ /^(\d+\.)\s*(.*),\s*(.*)-\s*(.*)/;
-			print "|$city|$city_info{'ID'}|$city_info{'name'}|\n";
 	 		$city_info{'ID'} =~ s/(?:^ +)||(?: +$)//g;
 	 		$city_info{'name'} =~ s/(?:^ +)||(?: +$)//g;
 	 		$city_info{'country'} =~ s/(?:^ +)||(?: +$)//g;
