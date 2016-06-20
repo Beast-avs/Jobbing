@@ -50,7 +50,7 @@ sub setConfigFile($){
 sub Parse($){
 	my $self = shift;
 	
-	my $city = shift @_;	# Name of the city
+	my $city = shift @_ || "";	# Name of the city
 	my %city_info=();		# Contains the city info
 	$city_info{'ID'} = 'unknown';
 	$city_info{'name'} = 'unknown';
@@ -61,12 +61,9 @@ sub Parse($){
 	
 	while(<CITIES>){
 		chomp;
+		next if $city eq "";
 		if ($_ =~ /$city/){
-	 		my @list = split(m[(?:\.|\,\ |\-)], $_);  # /(\.\, \-]/,$_);
-	 		$city_info{'ID'} = $list[0];
-	 		$city_info{'name'} = $list[1];
-	 		$city_info{'country'} = $list[2];
-	 		$city_info{'population'} = $list[3];
+	 		($city_info{'ID'}, $city_info{'name'}, $city_info{'country'}, $city_info{'population'}) = $_=~ /^(\d+\.)\s*(.*),\s*(.*)-\s*(.*)/;
 	 		$city_info{'ID'} =~ s/(?:^ +)||(?: +$)//g;
 	 		$city_info{'name'} =~ s/(?:^ +)||(?: +$)//g;
 	 		$city_info{'country'} =~ s/(?:^ +)||(?: +$)//g;
